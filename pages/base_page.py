@@ -18,5 +18,4 @@ class BasePage:
         return True
 
     def check_url(self):
-        cu = self.browser.current_url
-        return cu
+        return self.browser.current_url
