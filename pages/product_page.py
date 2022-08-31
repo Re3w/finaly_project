@@ -17,3 +17,11 @@ class ProductPage(BasePage, MathPromo, ProductPageLocators):
         np = self.browser.find_element(*ProductPageLocators.NAME_PRODUCT_MAIN_ON_PAGE)#(self.NAME_PRODUCT_MAIN_ON_PAGE[0], self.NAME_PRODUCT_MAIN_ON_PAGE[1]).text
         npf = self.browser.find_element(*ProductPageLocators.NAME_PRODUCT_FROM_ALERT)#(self.NAME_PRODUCT_FROM_ALERT[0], self.NAME_PRODUCT_FROM_ALERT[1]).text
         assert np.text == npf.text, "Error in the name of the added product"
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), "Success message is presented, but " \
+                                                                                  "should not be "
+
+    def should_see_as_disappearing_message(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), "Success message is presented, but it must " \
+                                                                          "disappear "

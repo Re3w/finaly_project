@@ -1,6 +1,7 @@
 import math
-from selenium.common.exceptions import NoSuchElementException
-from selenium.common.exceptions import NoAlertPresentException
+from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException, TimeoutException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class MathPromo:
@@ -23,7 +24,7 @@ class BasePage:
     def __init__(self, browser, url, timeout=10):
         self.browser = browser
         self.url = url
-        self.browser.implicitly_wait(timeout)
+        #self.browser.implicitly_wait(timeout)
 
     def open(self):
         self.browser.get(self.url)
@@ -37,3 +38,32 @@ class BasePage:
 
     def check_url(self):
         return self.browser.current_url
+
+    def is_not_element_present(self, how, what, timeout=4):
+        try:
+            WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return True
+
+        return False
+
+    def is_disappeared(self, how, what, timeout=4):
+        try:
+            WebDriverWait(self.browser, timeout, 1, TimeoutException).until_not(EC.presence_of_element_located((how,
+                                                                                                                what)))
+        except TimeoutException:
+            return False
+
+        return True
+
+
+"""
+WebDriverWait(driver, timeout, poll_frequency=0.5, ignored_exceptions=None)
+
+Args:
+
+driver - Instance of WebDriver (Ie, Firefox, Chrome or Remote)
+timeout - Number of seconds before timing out
+poll_frequency - sleep interval between calls By default, it is 0.5 second.
+ignored_exceptions - iterable structure of exception classes ignored during calls. By default, it contains NoSuchElementException only.
+"""
