@@ -1,4 +1,4 @@
-# Finally Project
+# Final Project
 ### Stepik course
 ## Автоматизация тестирования с помощью Selenium и Python
 
