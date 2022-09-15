@@ -8,6 +8,6 @@
     pytest -v --tb=line --language=en --browser_name=chrome -m need_review
 
 
-### Ссылка на сертификат
+### Cертификат
     https://stepik.org/cert/1639210
 
