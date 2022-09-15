@@ -6,3 +6,8 @@
 
 ### Для запуска тестов воспользуйтесь командой 
     pytest -v --tb=line --language=en --browser_name=chrome -m need_review
+
+
+### Ссылка на сертификат
+    https://stepik.org/cert/1639210
+
